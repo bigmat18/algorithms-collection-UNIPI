@@ -10,6 +10,10 @@ function *adj(G, v){
   }
 }
 
+/**La DFS esegue uan visita in profondità ricorsiva, andando, ogni volta che incontra
+ * un nodo a analizzare tutti i suoi figli bianchi e per ogniuno contrassegnarlo in grigio
+ * quando saranno stati tutti visitati il nodo principale diventerà nero
+ */
 function DFS_visit(G, v, time){
   v.color = "GRIGIO"
   time = time + 1
@@ -26,11 +30,17 @@ function DFS_visit(G, v, time){
 }
 
 function DFS(G){
+  // Inizializzazione dei nodi
   for(let v of G.V){
     v.color = "BIANCO"
     v.p = null
   }
+  // Inizializzazione valore time che verrà salvato per ogni nodo per indicare
+  // in che momento si inizia a visitare i figli di quel nodo
+  // e verrà salvato anche per vedere quando si finisce di visitare
   var time = 0
+
+  // Inizio chiamate ricorsive
   for(let v of G.V){
     if(v.color == "BIANCO"){
       DFS_visit(G,v,time)
